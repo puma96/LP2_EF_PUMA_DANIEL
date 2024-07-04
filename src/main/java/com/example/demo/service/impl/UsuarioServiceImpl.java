@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.example.demo.entity.UsuarioEntity;
@@ -10,6 +11,7 @@ import com.example.demo.utils.Utilitarios;
 
 import jakarta.servlet.http.HttpSession;
 
+@Service
 public class UsuarioServiceImpl implements UsuarioService {
 
 	@Autowired
