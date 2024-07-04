@@ -10,5 +10,7 @@ public interface CategoriaService {
 
 	CategoriaEntity findCategoriaById(Integer id);
 
-	CategoriaEntity saveCategoria(CategoriaEntity categoria);}
+	CategoriaEntity saveCategoria(CategoriaEntity categoria);
 
+	void deleteCategoria(Integer id);
+}
