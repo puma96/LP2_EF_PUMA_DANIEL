@@ -3,6 +3,7 @@ package com.example.demo.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.entity.UsuarioEntity;
 import com.example.demo.repository.UsuarioRepository;
@@ -18,7 +19,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 	private UsuarioRepository usuarioRepository;
 
 	@Override
-	public void crearUsuario(UsuarioEntity usuarioEntity, Model model) {
+	public void crearUsuario(UsuarioEntity usuarioEntity, Model model, MultipartFile foto) {
+		
+		String nombreFoto = Utilitarios.guardarImagen(foto);
+		usuarioEntity.setUrlImagen(nombreFoto);
+		
 		String passwordHash = Utilitarios.extraerHash(usuarioEntity.getPassword());
 		usuarioEntity.setPassword(passwordHash);
 

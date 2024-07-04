@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            background-color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header img {
+            height: 50px;
+        }
+
+        .company-info {
+            text-align: right;
+        }
+
+        .date {
+            text-align: right;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f0f0f0;
+        }
+
+        .signature {
+            margin-top: 50px;
+            text-align: right;
+        }
+
+        .signature img {
+            height: 100px;
+        }
+
+        .generated-by {
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="https://campusvirtualperu.com/wp-content/uploads/2023/11/logo_cibertec_fondo_blanco_low.jpg"
+            alt="Company Logo">
+        <div class="company-info">
+            <h2>Cibertec</h2>
+        </div>
+    </header>
+
+    <div class="date">
+        <p th:text="${#dates.format(new java.util.Date(), 'dd/MM/yyyy')}">19/06/2024</p>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre producto</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Categoría</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="producto : ${productos}">
+                <td th:text="${producto.idProducto}"></td>
+                <td th:text="${producto.nombreProducto}"></td>
+                <td th:text="${'S/'+producto.precio}"></td>
+                <td th:text="${producto.stock}"></td>
+                <td th:text="${producto.categoriaEntity.descripcion}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="signature">
+        <img src="https://cdn.shopify.com/s/files/1/0594/4639/5086/files/Line_Through_Name.jpg" alt="Firma">
+    </div>
+
+    <div class="generated-by">
+        Generado por <span th:text="${usuario}"></span>
+    </div>
+</body>
+
+</html>

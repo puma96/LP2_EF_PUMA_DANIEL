@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Categoría</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <style>
+           body {
+        background-color: #f0f2f5;
+        font-family: Arial, sans-serif;
+    }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+         
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 50px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2>Registrar Nueva Categoría</h2>
+            </div>
+        </div>
+		
+		<div class="row mt-3">
+		        <div class="col-md-12 text-center nombre-usuario">
+		            Bienvenido <span th:text="${nombre_usuario}"></span>
+		        </div>
+		    </div>
+
+		    <div class="row mt-1">
+		        <div class="col-md-12 text-right">
+		            <a href="/logout" class="btn btn-secondary">Cerrar sesión</a>
+		        </div>
+		    </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <form th:action="@{/categorias/registrar}" th:object="${categoria}" method="post">
+                    <div class="form-group">
+                        <label for="descripcion">Descripción:</label>
+                        <input type="text" th:field="*{descripcion}" class="form-control" id="descripcion" placeholder="Ingrese la descripción de la categoría">
+                        <div th:if="${#fields.hasErrors('descripcion')}" class="text-danger">
+                            <p th:errors="*{descripcion}">Descripción Error</p>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Registrar</button>
+                        <a th:href="@{/menu}" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

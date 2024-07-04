@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Editar Producto</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+body {
+	background-color: #f0f2f5;
+	font-family: Arial, sans-serif;
+}
+
+.container {
+	background-color: rgba(255, 255, 255, 0.9);
+	padding: 20px;
+	border-radius: 10px;
+	margin-top: 20px;
+	max-width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.btn-secondary {
+	margin-right: 10px;
+}
+
+.nombre-usuario {
+	font-size: 24px;
+	color: #064a00;
+	font-weight: bold;
+	margin-bottom: 10px;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row mt-3">
+			<div class="col-md-12 text-center nombre-usuario">
+				Bienvenido <span th:text="${nombre_usuario}"></span>
+			</div>
+		</div>
+
+		<div class="row mt-1">
+			<div class="col-md-12 text-right">
+				<a href="/logout" class="btn btn-secondary">Cerrar sesión</a>
+			</div>
+		</div>
+
+		<div class="row mt-3">
+			<div class="col-md-12">
+				<h2>Editar Producto</h2>
+				<form th:action="@{/productos/actualizar}" th:object="${producto}"
+					method="post">
+					<input type="hidden" th:field="*{idProducto}" />
+					<div class="form-group">
+						<label for="nombreProducto">Nombre del Producto</label> <input
+							type="text" class="form-control" id="nombreProducto"
+							th:field="*{nombreProducto}" required>
+					</div>
+					<div class="form-group">
+						<label for="precio">Precio</label> <input type="number"
+							class="form-control" id="precio" th:field="*{precio}" required>
+					</div>
+					<div class="form-group">
+						<label for="stock">Stock</label> <input type="number"
+							class="form-control" id="stock" th:field="*{stock}" required>
+					</div>
+					<div class="form-group">
+						<label for="categoria">Categoría</label> <select
+							class="form-control" id="categoria"
+							th:field="*{categoriaEntity.categoria_id}" required>
+							<option th:each="categoria : ${categorias}"
+								th:value="${categoria.categoria_id}"
+								th:text="${categoria.descripcion}"></option>
+						</select>
+					</div>
+					<button type="submit" class="btn btn-primary">Actualizar
+						Producto</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
